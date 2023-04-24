@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -10,29 +9,43 @@ import { MessageService } from '../message.service';
   styleUrls: ['./heroes.component.css']
 })
 
-export class HeroesComponent {
+/*
+HeroesComponent implements the OnInit lifecycle hook interface. 
+The OnInit interface requires that the class has a method called 
+ngOnInit() which will be automatically called by Angular when the
+component is initialized.
+
+The class also defines a property called heroes that is an array 
+of Hero objects. In the constructor, the class injects an instance
+of the HeroService into the heroService property using dependency 
+injection.
+
+In the ngOnInit() method, the getHeroes() method is called to populate
+the heroes property with the heroes returned by the HeroService.
+
+The getHeroes() method calls the getHeroes() method of the injected 
+HeroService which returns an observable. The subscribe() method is 
+used to subscribe to the observable and assign the returned heroes 
+to the heroes property.
+
+The class defines a component that uses a HeroService to fetch heroes, 
+and populates the heroes property with the results. The OnInit interface 
+ensures that the getHeroes() method is called when the component is 
+initialized.
+*/
+
+export class HeroesComponent implements OnInit {
 
   heroes: Hero[] = [];
-  selectedHero?: Hero;
 
-  constructor(private heroService: HeroService, private messageService: MessageService) { }
+  constructor(private heroService: HeroService) { }
 
-  // Lifecycle hook that is called when the component is initialized. 
   ngOnInit(): void {
-    // It calls the getHeroes() method to retrieve the list of heroes.
     this.getHeroes();
   }
 
-  // Display information about the selected hero
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  }
-
   getHeroes(): void {
-    // Use the injected heroService to retrieve the list of heroes.
     this.heroService.getHeroes()
-      // The subscribe() method is used to subscribe to the Observable returned by getHeroes()
       .subscribe(heroes => this.heroes = heroes);
   }
 
