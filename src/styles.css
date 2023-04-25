@@ -1,39 +1,90 @@
-/* Application-wide Styles */
-h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
+
+:root {
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    --leading-none: 1;
+    --leading-tight: 1.25;
+    --leading-snug: 1.375;
+    --leading-base: 1.5;
+
+    --color-light: 246, 246, 246;
+    --color-dark: 20, 20, 20;
+    --color-success: 0, 0, 204;
+    --color-danger: 204, 0, 0;
+
+    --max-w-base: 2560px;
+    --max-w-sm: 540px;
+    --max-w-md: 720px;
+    --max-w-lg: 960px;
+    --max-w-xl: 1140px;
+    --max-w-2xl: 1320px;
+    --max-w-full: 100%;
 }
 
-h2,
-h3 {
-    color: #444;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
+
+html {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 15px;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 
 body {
-    margin: 2em;
+    min-height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 40px;
+    background-color: rgba(var(--color-dark), 1);
 }
 
 body,
 input[type="text"],
 button {
-    color: #333;
-    font-family: Cambria, Georgia, serif;
+    line-height: 1.5;
 }
+
+body {
+    color: rgba(var(--color-light), 1);
+}
+
+a {
+    display: inline-block;
+    color: rgba(var(--color-light), 1);
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: rgba(var(--color-light), 1);
+  }
+  
+  a:hover,
+  a:focus,
+  a:active {
+    color: rgba(var(--color-light), 0.75);
+    outline: 0;
+  }
 
 button {
     background-color: #eee;
     border: none;
-    border-radius: 4px;
+    border-radius: 0;
     cursor: pointer;
     color: black;
-    font-size: 1.2rem;
-    padding: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    padding: 0.5rem 0.75rem;
 }
 
 button:hover {
@@ -47,7 +98,31 @@ button:disabled {
     cursor: auto;
 }
 
-/* everywhere else */
-* {
-    font-family: Arial, Helvetica, sans-serif;
+input {
+  color: rgba(var(--color-light), 0.75);
+  background-color: rgba(var(--color-dark), 1);
+  border: 1px solid rgba(var(--color-light), 1);
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='url']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='number']:focus,
+input[type='tel']:focus,
+input[type='range']:focus,
+input[type='date']:focus,
+input[type='month']:focus,
+input[type='week']:focus,
+input[type='time']:focus,
+input[type='datetime']:focus,
+input[type='datetime-local']:focus,
+input[type='color']:focus,
+textarea:focus {
+  border-color: rgba(var(--color-light), 0.5);
+  color: rgba(var(--color-dark), 1);
+  outline: 0;
 }
